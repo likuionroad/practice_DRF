@@ -25,7 +25,7 @@ SECRET_KEY = '$f9_=)v&$^csd+pr1473f&0xmmhw+^g@moc+ctf#9t%b50$$_t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'users.apps.UsersConfig',
     'book.apps.BookConfig',
 ]

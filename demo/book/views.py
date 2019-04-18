@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
-from .models import BookInfo,HeroInfo
+from .models import BookInfo, HeroInfo
+from rest_framework.viewsets import ModelViewSet
+from .BookInfoSerializer import BookInfoSerializer
 
 # Create your views here.   safe=False
 
@@ -17,3 +19,8 @@ def first(request):
     #     print(list1)
     # list1 = json.dumps(list1)
     return HttpResponse(a)
+
+
+class BookInfoViewSet(ModelViewSet):
+    queryset = BookInfo.objects.all()
+    serializer_class = BookInfoSerializer
