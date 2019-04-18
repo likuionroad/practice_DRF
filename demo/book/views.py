@@ -9,8 +9,8 @@ from .BookInfoSerializer import BookInfoSerializer
 
 
 def first(request):
-    a = [{"name": 123, "age": 23}, {"name": 234, "age": 25}]
-    a = json.dumps(a)
+    # a = [{"name": 123, "age": 23}, {"name": 234, "age": 25}]
+    # a = json.dumps(a)
     # a = BookInfokInfo.objects.all()
     # list1 = []
     # for i in a:
@@ -18,9 +18,19 @@ def first(request):
     #     list1.append(i.bread)
     #     print(list1)
     # list1 = json.dumps(list1)
-    return HttpResponse(a)
+
+
+    # querset = BookInfo.objects.get(id=1)
+    querset = BookInfo.objects.all()
+    serializer_book = BookInfoSerializer
+    book = serializer_book(querset, many=True)
+    data = book.data
+    print(data)
+    data = json.dumps(data)
+    return HttpResponse(data)
 
 
 class BookInfoViewSet(ModelViewSet):
-    queryset = BookInfo.objects.all()
-    serializer_class = BookInfoSerializer
+    # queryset = BookInfo.objects.all()
+    # serializer_class = BookInfoSerializer
+    pass
