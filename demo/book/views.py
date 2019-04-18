@@ -7,4 +7,5 @@ import json
 def first(request):
     a = [{"name": 123, "age": 23}, {"name": 234, "age": 25}]
     a = json.dumps(a)
+
     return HttpResponse(a)
