@@ -20,6 +20,32 @@ class BookInfoSerializer(serializers.ModelSerializer):
         # 排除调不要的
         exclude = ('is_delete',)
 
+    # 对标题进行校验
+    # def validate_btitle(self, value):
+    #     if '平凡' not in value:
+    #         raise serializers.ValidationError("图书不是关于平凡的世界的")
+    #     return value
+
+    def create(self, validated_data):
+        """新建"""
+        return BookInfo.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        """更新，instance为跟新的对象"""
+        instance.btitle = validated_data.get('btitle', instance.btitle)
+        instance.bpub_date = validated_data.get('bpub_date', instance.bpub_date)
+        instance.bread = validated_data.get('bread', instance.bread)
+        instance.bcomment = validated_data.get('bcomment', instance.bcomment)
+        instance.save()
+        return instance
+
+
+
+
+
+
+
+
 
 class HeroInfoSerializer(serializers.Serializer):
     """英雄数据序列化器"""

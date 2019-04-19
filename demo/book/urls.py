@@ -21,6 +21,7 @@ from rest_framework.routers import DefaultRouter
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^first/', views.first),
+    url(r'^create/', views.create),
 ]
 
 

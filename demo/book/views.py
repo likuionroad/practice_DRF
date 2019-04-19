@@ -30,6 +30,33 @@ def first(request):
     return HttpResponse(data)
 
 
+def upgrate(request):
+    data = {"btitle": "围城"}
+    querset = BookInfo.objects.get(id=8)
+    serializer = BookInfoSerializer(querset, data=data)
+    a = serializer.is_valid()
+    print(a)
+    b = serializer.errors
+    print(b)
+    book = serializer.save()
+    print(book.btitle)
+    return HttpResponse(book.btitle)
+
+
+def create(request):
+    data = {"btitle": "雷霆", 'bpub_date': '2018-08-27'}
+    serializer = BookInfoSerializer(data=data)
+    a = serializer.is_valid()
+    print(a)
+    book = serializer.save()
+    print(book)
+    b = serializer.validated_data
+    print(b)
+    return HttpResponse(book.btitle)
+
+
+
+
 class BookInfoViewSet(ModelViewSet):
     # queryset = BookInfo.objects.all()
     # serializer_class = BookInfoSerializer
